@@ -10,7 +10,8 @@ urlpatterns = [
 	path("inBetweenLogin", views.inBetweenLogin, name="inBetweenLogin"),
 	path("logout", views.logout, name="logout"),
 	path("inventory", views.inventory, name="inventory"),
-	path("home", views.home, name="home")
+	path("home", views.home, name="home"),
+	path("employee", views.employee, name="employee")
 
 ]
 

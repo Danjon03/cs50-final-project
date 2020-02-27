@@ -28,3 +28,9 @@ class Inventory(models.Model):
 	
 	def __str__(self):
 		return f"{self.itemName}"
+
+class Employee(models.Model):
+	name = models.CharField(max_length = 64, null = True)
+	
+	def __str__(self):
+		return f"{self.name}"

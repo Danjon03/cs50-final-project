@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from .models import currentlyLoggedInUsers, Users, Inventory
+from .models import currentlyLoggedInUsers, Users, Inventory, Employee
 from .forms import OrderForm, LoginForm
 from django.urls import reverse
 from django.template import RequestContext
@@ -136,13 +136,14 @@ def logout(request):
 	response.delete_cookie('code')
 	return response
 
-
-
-
-
 def inventory(request):
 	context = {"inventory": Inventory.objects.all()}
 	return render(request, "inventoryDatabase.html", context)
 	
 def home(request):
 	return render(request, "home.html")
+	
+	
+def employee(request):
+	context = {"employees": Employee.objects.all()}
+	return render(request, "employees.html", context)
