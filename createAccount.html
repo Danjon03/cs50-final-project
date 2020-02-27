@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create Account</title>
+	</head>
+	<body>
+	
+		<h1>Create Account</h1>
+		
+		<form action="{% url 'inBetweenCreateAccount'%}" method="post">{% csrf_token %}
+		
+			<input name="name" type="text" placeholder="Enter Name" required><br>
+			
+			<input type="username" placeholder="Enter Username" name="username" required><br>
+			
+			<input type="password" placeholder="Enter Password" name="password" required><br>
+			
+			
+			{{ form }}
+			<button type="submit">Create Account</button>
+		
+		</form>
+	
+		<h4>{{message}}</h4>
+	
+	</body>
+</html>
