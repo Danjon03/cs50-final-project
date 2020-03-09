@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Shortages</title>
-	
+		<title>Generated Order</title>
+	{%load static%}
+		<script src="{% static 'newOrder.js' %}"></script>
 	
 	</head>
 	
@@ -25,23 +26,23 @@
 	
 	<body>
 	
-		<h1>Shortages</h1>
+		<h1>Generated Order</h1>
 		
-		<table>
+		<table id="table">
 		<tr>
 			<th>Item</th>
-			<th>Quantity</th>
+			<th>Quantity being purchased</th>
 			<th>Code</th>
-			<th>Price</th>
+			
 		</tr>
 		{%for x in inventory%}
 		<tr>
 			{%if x.quantity < 5 %}
-			<th>{{x.itemName}}</th>
-			<th>{{x.quantity}}</th>
-			<th>{{x.productCode}}</th>
-			<th>${{x.productPrice}}.00</th>
-		{%endif%}
+				<th>{{x.itemName}}</th>
+				<th>{{x.suggustedQuantity}}</th>
+				<th id = myTr>{{x.productCode}}</th>
+			
+			{%endif%}
 		</tr>
 		{%endfor%}
 		

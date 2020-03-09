@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Remove Employee</title>
+	</head>
+	
+	<style>
+	
+	table {
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 100%;
+}
+	
+	
+	td, th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+}
+	</style>
+	
+	
+	<body>
+	
+		<h1>Which employee would you like to remove from the system?</h1>
+		
+		<table>
+		<tr>
+			<th>Name</th>
+			<th>Remove</th>
+		</tr>
+		{%for x in employees%}
+			{%if x.staffStatus == False %}
+			<tr>
+				<th>{{x.first_name}}</th>
+				<th><a href = "{%url 'deleteEmployee' x.first_name %}">remove</a></th>
+			</tr>
+			{%endif%}
+		{%endfor%}
+		
+		</table>
+		
+		<br>
+		<br>
+		
+		<a href = "{% url 'home' %}">Return to Home</a>
+		
+	</body>
+</html>

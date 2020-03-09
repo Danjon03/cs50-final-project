@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Shortages</title>
-	
-	
+		<title>Employees</title>
 	</head>
 	
 	<style>
@@ -25,24 +23,21 @@
 	
 	<body>
 	
-		<h1>Shortages</h1>
+		<h1>Employees</h1>
 		
 		<table>
 		<tr>
-			<th>Item</th>
-			<th>Quantity</th>
-			<th>Code</th>
-			<th>Price</th>
+			<th>Name</th>
+			
 		</tr>
-		{%for x in inventory%}
+		{%for x in employees%}
+			{%if x.staffStatus == False %}
+		
 		<tr>
-			{%if x.quantity < 5 %}
-			<th>{{x.itemName}}</th>
-			<th>{{x.quantity}}</th>
-			<th>{{x.productCode}}</th>
-			<th>${{x.productPrice}}.00</th>
-		{%endif%}
+			
+			<th>{{x.first_name}}</th>
 		</tr>
+			{%endif%}
 		{%endfor%}
 		
 		</table>
@@ -50,7 +45,7 @@
 		<br>
 		<br>
 		
-		<a href = "{%url 'home'%}">Return to Home</a>
+		<a href = "{% url 'home' %}">Return to Home</a>
 		
 	</body>
 </html>
