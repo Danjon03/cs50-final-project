@@ -13,12 +13,6 @@ def login(request):
 	
 		return render(request, "login.html")
 	
-	
-	
-	
-	
-	
-	
 def createAccount(request):
 	
 	
@@ -110,7 +104,17 @@ def inBetweenLogin(request):
 		}
 		
 		
-		return render(request, "home.html")
+		
+		staff = Users.objects.filter(username=loginForm.cleaned_data["username"]).values_list('staffStatus')[0][0]
+		
+		if bool(staff) == False:
+			response = render(request, "employeeHome.html")
+			response.set_cookie('username', Username)
+			
+		else:
+			response = render(request, "home.html")
+			response.set_cookie('username', Username)
+		return response
 		
 		
 		
@@ -121,19 +125,9 @@ def inBetweenLogin(request):
 		return render(request, "login.html")
 	
 def logout(request):
-
-	
-	username = request.COOKIES["username"]
-	currentlyLoggedInUsers.objects.filter(username=username).delete()
-	
-	x = currentlyLoggedInUsers.objects.filter(username=username)
-	x.delete()
-	
 	
 	response = render(request, 'login.html')
 	response.delete_cookie('username')
-	response.delete_cookie('userInfo')
-	response.delete_cookie('code')
 	return response
 
 def inventory(request):
@@ -141,9 +135,60 @@ def inventory(request):
 	return render(request, "inventoryDatabase.html", context)
 	
 def home(request):
-	return render(request, "home.html")
+	response = render(request, "home.html")
 	
+	x = request.COOKIES["username"]
+	
+	staff = Users.objects.filter(username=x).values_list('staffStatus')[0][0]
+		
+	if bool(staff) == True:
+		response = render(request, "home.html")
+	else:
+		response = render(request, "employeeHome.html")
+
+	return response
 	
 def employee(request):
-	context = {"employees": Employee.objects.all()}
+	context = {"employees": Users.objects.all()}
 	return render(request, "employees.html", context)
+
+def shortages(request):
+	context ={"inventory": Inventory.objects.all()}
+	return render(request, "shortages.html", context)
+
+def addEmployees(request):
+	return render(request, "addEmployees.html")
+	
+def createEmployee(request):
+	loginForm = LoginForm(request.POST)
+	if loginForm.is_valid():
+		
+		newEmployee = Employee(name=loginForm.cleaned_data["name"])
+		newEmployee.save()
+		newUser = Users(first_name=loginForm.cleaned_data["name"], username=loginForm.cleaned_data["username"], password=loginForm.cleaned_data["password"], staffStatus=False)
+		newUser.save()
+		return render(request, "home.html")
+
+
+
+def removeEmployee(request):
+	context = {"employees": Users.objects.all()}
+	return render(request, "removeEmployee.html", context)
+	
+
+def deleteEmployee(request, x):
+	Users.objects.filter(first_name=x).delete()
+	
+	context = {"employees": Users.objects.filter(staffStatus__gt=True)}
+	return render(request, "removeEmployee.html", context)
+
+
+def allOrders(request):
+	context ={"inventory": Inventory.objects.all()}
+	
+	return render(request, "allOrders.html", context)
+
+
+
+
+

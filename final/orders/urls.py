@@ -11,7 +11,13 @@ urlpatterns = [
 	path("logout", views.logout, name="logout"),
 	path("inventory", views.inventory, name="inventory"),
 	path("home", views.home, name="home"),
-	path("employee", views.employee, name="employee")
+	path("employee", views.employee, name="employee"),
+	path("shortages", views.shortages, name="shortages"),
+	path("addEmployees", views.addEmployees, name="addEmployees"),
+	path("createEmployee", views.createEmployee, name="createEmployee"),
+	path("removeEmployee", views.removeEmployee, name="removeEmployee"),
+	path("<x>/deleteEmployee", views.deleteEmployee, name="deleteEmployee"),
+	path("allOrders", views.allOrders, name="allOrders")
 
 ]
 

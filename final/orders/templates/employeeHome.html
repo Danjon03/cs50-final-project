@@ -29,21 +29,13 @@
 		
 		<div>
 		
-		<p>Store Owner Information</p>
+		<p>Employee Information</p>
 		<br>
-		
-		
-		<a href = "{%url 'employee'%}">Employees</a>
+		<br>
+		<a>Profile</a>
 		<br>
 		<br>
 		<a>Orders</a>
-		<br>
-		<br>
-		
-		<a>Add Employees</a>
-		<br>
-		<br>
-		<a></a>
 		<br>
 		<br>
 		</div>
@@ -56,12 +48,12 @@
 		<a href = "{%url 'inventory'%}">Inventory Database</a>
 		<br>
 		<br>
-		<a>Shortages</a>
+		<a href = "{%url 'shortages'%}">Shortages</a>
 		<br>
 		<br>
 		
 		</div>
-		
+		<a href = "{% url 'logout' %}">Logout</a>
 		
 		
 		

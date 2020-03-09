@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Inventory</title>
+		<title>Remove Employee</title>
 	</head>
 	
 	<style>
@@ -23,17 +23,20 @@
 	
 	<body>
 	
-		<h1>Inventory</h1>
+		<h1>Which employee would you like to remove from the system?</h1>
 		
 		<table>
 		<tr>
 			<th>Name</th>
-			
+			<th>Remove</th>
 		</tr>
 		{%for x in employees%}
-		<tr>
-			<th>{{x.name}}</th>
-		</tr>
+			{%if x.staffStatus == False %}
+			<tr>
+				<th>{{x.first_name}}</th>
+				<th><a href = "{%url 'deleteEmployee' x.first_name %}">remove</a></th>
+			</tr>
+			{%endif%}
 		{%endfor%}
 		
 		</table>
