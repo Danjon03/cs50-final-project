@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+	</head>
+	
+	
+	<body>
+	
+		<h1>Login</h1>
+		
+		<form action="{% url 'inBetweenLogin'%}" method="post">{% csrf_token %}
+		
+			<input name="name" type="text" placeholder="Enter Name"><br>
+			
+			<input id = "username" type="username" placeholder="Enter Username" name="username" required><br>
+			
+			<input type="password" placeholder="Enter Password" name="password" required><br>
+			
+			
+			{{ form }}
+			<button type="submit">Login</button>
+		
+		</form>
+	
+	<br>
+		
+		Don't have an account? Create one <a href="{% url 'createAccount'%}">Here</a>
+		
+		<h4>{{message}}</h4>
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Prices</title>
+	</head>
+	<body>
+	
+		<h1>Hello {{userInfo}}</h1>
+		<ul>
+			{%for x in PizzaPrices%}
+			<li>
+			{{x}}
+			</li>
+			{%endfor%}
+		</ul>
+		
+		<br>
+		
+		
+		
+		<br>
+		<br>
+		
+		<form action="{% url 'checkout'%}" method="post">
+			
+			
+			<select name="size" >
+				<option value="Small">Small</option>
+				<option value="Large">Large</option>
+				<option value="Special">Special</option>
+			
+			</select>
+			
+			
+			<br>
+			<h3>Ingredient 1</h3>
+			<select name="ingredient1">
+				<option value="none">No First Ingredient</option>
+				{%for x in Ingredients%}
+				
+				<option value = "{{x}}">{{x}}</option>
+				{%endfor%}
+			</select>
+				
+			<h3>Ingredient 2</h3>
+			<select name="ingredient2">
+				<option value="none">No Second Ingredient</option>
+				{%for x in Ingredients%}
+				
+				<option value = "{{x}}">{{x}}</option>
+				{%endfor%}
+			</select>
+			
+			<h3>Ingredient 3</h3>
+			<select name="ingredient3">
+				<option value="none">No Third Ingredient</option>
+				{%for x in Ingredients%}
+				
+				<option value = "{{x}}">{{x}}</option>
+				{%endfor%}
+			</select>
+			
+			<br>
+			
+			
+			
+			
+			
+			<h3>Quantity</h3>
+			<select name="quantity">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+			
+			</select>
+			
+			<br>
+			<br>
+			{% csrf_token %}
+			{{ form }}
+			
+			<input type="submit" value="Place Order">
+		</form>
+	
+	<h4>Your pizza will not come with cheese unless you put cheese in your toppings</h4>
+	
+	
+	<a href="{% url 'logout' %}">Logout</a>
+	
+	</body>
+</html>
